@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8"/>
+<style>
+  @font-face {
+    font-family: 'NotoTamil';
+    src: url('/usr/share/fonts/truetype/noto/NotoSansTamil-Regular.ttf');
+    font-weight: normal;
+  }
+  @font-face {
+    font-family: 'NotoTamil';
+    src: url('/usr/share/fonts/truetype/noto/NotoSansTamil-Bold.ttf');
+    font-weight: bold;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DejaVu Sans', Arial, sans-serif;
+    font-size: 10pt;
+    color: #212121;
+    background: #fff;
+  }
+
+  /* ─── COVER ─────────────────────────────────────────── */
+  .cover {
+    background: linear-gradient(160deg, #1A237E 0%, #283593 50%, #3949AB 100%);
+    color: white;
+    padding: 30px 40px 25px;
+    text-align: center;
+    page-break-after: always;
+  }
+  .cover-icon { font-size: 52pt; margin-bottom: 8px; }
+  .cover h1 {
+    font-size: 26pt; font-weight: bold;
+    color: #FFD700; letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    margin-bottom: 4px;
+  }
+  .cover h2 {
+    font-size: 17pt; color: #fff;
+    margin-bottom: 2px; font-style: italic;
+  }
+  .cover h3 { font-size: 12pt; color: #B0BEC5; margin-bottom: 16px; }
+  .cover-divider {
+    border: none; border-top: 2px solid #FFD700;
+    width: 70%; margin: 10px auto;
+  }
+  .cover-meta { font-size: 9pt; color: #CFD8DC; margin-top: 6px; line-height: 1.8; }
+
+  /* ─── COVER ILLUSTRATION ────────────────────────────── */
+  .cover-svg { margin: 14px auto; display: block; }
+
+  /* ─── CHARACTER TABLE ───────────────────────────────── */
+  .section { padding: 18px 32px; }
+  .section-title {
+    font-size: 13pt; font-weight: bold; color: #1A237E;
+    border-left: 5px solid #FFD700;
+    padding-left: 10px; margin-bottom: 10px; margin-top: 8px;
+  }
+
+  table.chars {
+    width: 100%; border-collapse: collapse; font-size: 9pt;
+  }
+  table.chars th {
+    background: #1A237E; color: #FFD700;
+    padding: 6px 8px; text-align: left;
+  }
+  table.chars tr:nth-child(even) { background: #E8EAF6; }
+  table.chars tr:nth-child(odd)  { background: #F5F5F5; }
+  table.chars td { padding: 5px 8px; border: 1px solid #C5CAE9; }
+  table.chars td:first-child { font-weight: bold; color: #3949AB; text-align: center; }
+
+  /* ─── SCENE ─────────────────────────────────────────── */
+  .scene-header {
+    background: #1A237E; color: #FFD700;
+    font-size: 12pt; font-weight: bold;
+    padding: 8px 16px; margin: 16px 0 8px;
+    border-left: 6px solid #FFD700;
+  }
+
+  .direction {
+    font-style: italic; color: #7B1FA2;
+    font-size: 8.5pt; margin: 4px 0 6px 8px;
+  }
+
+  /* ─── DIALOGUE BLOCK ────────────────────────────────── */
+  .dialogue-block { margin: 7px 0; }
+
+  .char-name {
+    font-weight: bold; color: #3949AB;
+    font-size: 10pt; margin-bottom: 1px;
+  }
+  .char-action {
+    font-style: italic; color: #795548;
+    font-size: 8.5pt;
+  }
+
+  .eng-line {
+    font-size: 10pt; color: #212121;
+    margin-left: 16px; line-height: 1.55;
+    margin-bottom: 2px;
+  }
+
+  .tamil-line {
+    font-family: 'NotoTamil', 'Noto Sans Tamil', serif;
+    font-size: 10pt; color: #4E342E;
+    background: #FFF8E1;
+    border-left: 3px solid #FFD700;
+    padding: 3px 8px 3px 12px;
+    margin: 2px 16px 5px 16px;
+    line-height: 1.7;
+    border-radius: 2px;
+  }
+
+  /* ─── VERSE BOX ─────────────────────────────────────── */
+  .verse-box {
+    background: #E8EAF6;
+    border: 2px solid #3949AB;
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin: 10px 32px;
+    text-align: center;
+  }
+  .verse-eng {
+    font-size: 10.5pt; font-weight: bold; color: #1A237E;
+    line-height: 1.6; margin-bottom: 4px;
+  }
+  .verse-tam {
+    font-family: 'NotoTamil', 'Noto Sans Tamil', serif;
+    font-size: 11pt; color: #1A237E; font-weight: bold;
+    line-height: 1.8;
+  }
+  .verse-ref { font-size: 9pt; color: #5C6BC0; margin-top: 3px; }
+
+  /* ─── TIPS TABLE ─────────────────────────────────────── */
+  table.tips {
+    width: 100%; border-collapse: collapse; font-size: 9pt;
+    margin-top: 8px;
+  }
+  table.tips th {
+    background: #3949AB; color: white;
+    padding: 6px 10px; text-align: left;
+  }
+  table.tips tr:nth-child(even) { background: #FFFDE7; }
+  table.tips tr:nth-child(odd)  { background: #FAFAFA; }
+  table.tips td {
+    padding: 5px 10px; border: 1px solid #E0E0E0;
+  }
+  table.tips td:first-child { font-weight: bold; color: #3949AB; width: 32%; }
+
+  /* ─── DIVIDER ────────────────────────────────────────── */
+  .divider {
+    border: none; border-top: 1px solid #C5CAE9;
+    margin: 10px 32px;
+  }
+  .gold-divider {
+    border: none; border-top: 2px solid #FFD700;
+    margin: 14px 32px;
+  }
+
+  /* ─── BLACKOUT NOTE ─────────────────────────────────── */
+  .blackout-note {
+    background: #212121; color: #FFD700;
+    font-weight: bold; font-size: 10pt;
+    text-align: center; padding: 8px;
+    margin: 8px 32px; border-radius: 4px;
+  }
+
+  /* ─── FOOTER ─────────────────────────────────────────── */
+  .footer {
+    text-align: center; font-size: 8pt;
+    color: #9E9E9E; margin-top: 10px;
+    border-top: 1px solid #E0E0E0;
+    padding-top: 6px;
+  }
+  .footer-tamil {
+    font-family: 'NotoTamil', 'Noto Sans Tamil', serif;
+    font-size: 9pt; color: #5C6BC0;
+  }
+
+  /* ─── SCENE SVG WRAPPER ──────────────────────────────── */
+  .scene-svg {
+    display: block; margin: 6px auto 4px;
+  }
+
+  .page-break { page-break-before: always; }
+
+  /* narrator style */
+  .narrator-name {
+    font-weight: bold; color: #2E7D32;
+    font-size: 10pt; margin-bottom: 1px;
+  }
+  .jesus-name {
+    font-weight: bold; color: #4527A0;
+    font-size: 10.5pt; margin-bottom: 1px;
+  }
+  .angel-name {
+    font-weight: bold; color: #00838F;
+    font-size: 10pt; margin-bottom: 1px;
+  }
+  .devil-name {
+    font-weight: bold; color: #C62828;
+    font-size: 10pt; margin-bottom: 1px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ COVER PAGE ═══════════════════ -->
+<div class="cover">
+  <div class="cover-icon">🎭</div>
+  <!-- Cover SVG Illustration -->
+  <svg class="cover-svg" width="480" height="170" viewBox="0 0 480 170">
+    <!-- Rays -->
+    <g opacity="0.5">
+      <line x1="240" y1="85" x2="240" y2="10"  stroke="#FFD700" stroke-width="2"/>
+      <line x1="240" y1="85" x2="298" y2="17"  stroke="#FFD700" stroke-width="2"/>
+      <line x1="240" y1="85" x2="340" y2="45"  stroke="#FFD700" stroke-width="2"/>
+      <line x1="240" y1="85" x2="355" y2="100" stroke="#FFD700" stroke-width="2"/>
+      <line x1="240" y1="85" x2="182" y2="17"  stroke="#FFD700" stroke-width="2"/>
+      <line x1="240" y1="85" x2="140" y2="45"  stroke="#FFD700" stroke-width="2"/>
+      <line x1="240" y1="85" x2="125" y2="100" stroke="#FFD700" stroke-width="2"/>
+      <line x1="240" y1="85" x2="170" y2="152" stroke="#FFD700" stroke-width="2"/>
+      <line x1="240" y1="85" x2="310" y2="152" stroke="#FFD700" stroke-width="2"/>
+    </g>
+    <!-- Cross glow -->
+    <circle cx="240" cy="85" r="50" fill="#FFD700" opacity="0.12"/>
+    <circle cx="240" cy="85" r="38" fill="#FFD700" opacity="0.2"/>
+    <circle cx="240" cy="85" r="26" fill="#FFD700" opacity="0.9"/>
+    <!-- Cross -->
+    <rect x="235" y="58" width="10" height="54" fill="#1A237E"/>
+    <rect x="220" y="76" width="40" height="10" fill="#1A237E"/>
+
+    <!-- Happy Mask (left) -->
+    <circle cx="110" cy="85" r="38" fill="#FFD700" stroke="#4E342E" stroke-width="2"/>
+    <circle cx="99"  cy="93" r="5"  fill="#4E342E"/>
+    <circle cx="121" cy="93" r="5"  fill="#4E342E"/>
+    <path d="M 96 72 Q 110 58 124 72" stroke="#4E342E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <text x="110" y="134" font-size="9" fill="#FFD700" text-anchor="middle" font-family="Arial">😊 HAPPY</text>
+
+    <!-- Sad Mask (right) -->
+    <circle cx="370" cy="85" r="38" fill="#B0BEC5" stroke="#4E342E" stroke-width="2"/>
+    <circle cx="359" cy="93" r="5"  fill="#4E342E"/>
+    <circle cx="381" cy="93" r="5"  fill="#4E342E"/>
+    <path d="M 356 65 Q 370 78 384 65" stroke="#4E342E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <text x="370" y="134" font-size="9" fill="#4E342E" text-anchor="middle" font-family="Arial">😢 SAD</text>
+
+    <!-- Masks connected with ribbon -->
+    <path d="M 150 90 Q 200 60 225 85" stroke="#FFD700" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+    <path d="M 330 90 Q 280 60 255 85" stroke="#FFD700" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+  </svg>
+
+  <h1>🎭 VBS DRAMA SCRIPT</h1>
+  <h2>"JUDGMENT DAY — யாரு தப்பு?"</h2>
+  <h3>(Who's Fault Is It?)</h3>
+  <hr class="cover-divider"/>
+  <div class="cover-meta">
+    ⏱ Duration: 5–7 mins &nbsp;|&nbsp; 👥 Cast: 8 Members &nbsp;|&nbsp; 🗣 Language: Tanglish + Tamil<br/>
+    🎯 Audience: Children (5–12 yrs) &amp; Teens &nbsp;|&nbsp; ✝️ VBS Drama
+  </div>
+</div>
+
+<!-- ═══════════════════ CHARACTERS ═══════════════════ -->
+<div class="section">
+  <div class="section-title">👥 CHARACTERS / பாத்திரங்கள்</div>
+  <table class="chars">
+    <tr>
+      <th>#</th><th>Character / பெயர்</th><th>Role / வேடம்</th>
+    </tr>
+    <tr><td>1</td><td>NARRATOR / கதைசொல்லி</td><td>Off-stage or side-stage with mic — narrates the story</td></tr>
+    <tr><td>2</td><td>ARJUN / அர்ஜுன்</td><td>Naughty kid — comedy hero 🎮 (main character)</td></tr>
+    <tr><td>3</td><td>PRIYA / பிரியா</td><td>Arjun's school friend — also neglected by parents</td></tr>
+    <tr><td>4</td><td>AMMA / அம்மா</td><td>Always on phone 📱 — never pays attention to child</td></tr>
+    <tr><td>5</td><td>APPA / அப்பா</td><td>Always watching TV 📺 — ignores family &amp; church</td></tr>
+    <tr><td>6</td><td>JESUS / இயேசு</td><td>Judgment seat — calm, firm, compassionate ✝️</td></tr>
+    <tr><td>7</td><td>ANGEL GABRIEL / தூதர் கபிரியேல்</td><td>Oversized notebook prop — comedy angel 😇</td></tr>
+    <tr><td>8</td><td>DEVIL / சாத்தான்</td><td>Comedy villain — red cape + plastic horns 😈</td></tr>
+  </table>
+</div>
+
+<hr class="gold-divider"/>
+
+<!-- ═══════════════════ SCENE 1 ═══════════════════ -->
+<div class="section-title" style="margin: 0 32px;">🎬 காட்சி 1 — HOME SWEET HOME? (வீட்டில் என்ன நடக்கிறது?)</div>
+
+<!-- Scene 1 SVG: Family at home -->
+<svg class="scene-svg" width="520" height="190" viewBox="0 0 520 190">
+  <!-- Floor -->
+  <rect x="0" y="155" width="520" height="35" fill="#E8F5E9"/>
+  <line x1="0" y1="155" x2="520" y2="155" stroke="#2E7D32" stroke-width="2"/>
+  <!-- Wall -->
+  <rect x="0" y="0" width="520" height="155" fill="#FFF8E1"/>
+
+  <!-- TV on wall -->
+  <rect x="330" y="20" width="100" height="72" rx="4" fill="#263238" stroke="#000" stroke-width="2"/>
+  <rect x="337" y="27" width="86" height="58" fill="#29B6F6"/>
+  <text x="380" y="58" font-size="10" fill="white" text-anchor="middle" font-family="Arial" font-weight="bold">📺 LIVE</text>
+  <text x="380" y="73" font-size="8" fill="#FFD700" text-anchor="middle" font-family="Arial">CRICKET MATCH</text>
+  <line x1="380" y1="92" x2="380" y2="110" stroke="#263238" stroke-width="4"/>
+  <line x1="362" y1="110" x2="398" y2="110" stroke="#263238" stroke-width="4"/>
+
+  <!-- Sofa -->
+  <rect x="290" y="120" width="160" height="35" rx="5" fill="#A5D6A7" stroke="#2E7D32" stroke-width="1.5"/>
+  <rect x="285" y="110" width="12" height="50" rx="3" fill="#81C784" stroke="#2E7D32" stroke-width="1"/>
+  <rect x="438" y="110" width="12" height="50" rx="3" fill="#81C784" stroke="#2E7D32" stroke-width="1"/>
+
+  <!-- APPA sitting on sofa -->
+  <!-- Body -->
+  <rect x="350" y="100" width="28" height="48" rx="3" fill="#90CAF9" stroke="#1565C0" stroke-width="1"/>
+  <!-- Head -->
+  <circle cx="364" cy="88" r="14" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <circle cx="359" cy="90" r="2.5" fill="#4E342E"/>
+  <circle cx="369" cy="90" r="2.5" fill="#4E342E"/>
+  <path d="M 358 84 Q 364 80 370 84" stroke="#4E342E" stroke-width="1.5" fill="none"/>
+  <!-- Remote -->
+  <rect x="378" y="122" width="10" height="18" rx="2" fill="#263238" stroke="#000" stroke-width="1"/>
+  <circle cx="383" cy="127" r="2" fill="red"/>
+  <circle cx="383" cy="133" r="2" fill="#4CAF50"/>
+  <!-- Speech bubble -->
+  <ellipse cx="364" cy="66" rx="30" ry="13" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1"/>
+  <text x="364" y="70" font-size="7" fill="#1565C0" text-anchor="middle" font-family="Arial">GOAL! GOAL! 🏏</text>
+  <text x="364" y="175" font-size="8" fill="#1565C0" text-anchor="middle" font-family="Arial" font-weight="bold">APPA 📺</text>
+
+  <!-- TABLE -->
+  <rect x="155" y="118" width="65" height="8" rx="2" fill="#8D6E63" stroke="#4E342E" stroke-width="1"/>
+  <line x1="162" y1="126" x2="162" y2="155" stroke="#4E342E" stroke-width="2.5"/>
+  <line x1="212" y1="126" x2="212" y2="155" stroke="#4E342E" stroke-width="2.5"/>
+  <!-- Bible on table (dusty) -->
+  <rect x="168" y="104" width="32" height="20" rx="2" fill="#1A237E" stroke="#4E342E" stroke-width="1"/>
+  <text x="184" y="117" font-size="6" fill="#FFD700" text-anchor="middle" font-family="Arial" font-weight="bold">BIBLE</text>
+  <text x="184" y="99" font-size="6.5" fill="#9E9E9E" text-anchor="middle" font-family="Arial" font-style="italic">📚 Dust covers!</text>
+
+  <!-- AMMA standing, on phone -->
+  <rect x="70" y="90" width="28" height="55" rx="3" fill="#F48FB1" stroke="#C2185B" stroke-width="1"/>
+  <circle cx="84" cy="78" r="14" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <circle cx="79" cy="80" r="2.5" fill="#4E342E"/>
+  <circle cx="89" cy="80" r="2.5" fill="#4E342E"/>
+  <!-- Phone to ear -->
+  <rect x="92" y="72" width="10" height="15" rx="2" fill="#263238" stroke="#000" stroke-width="1"/>
+  <rect x="94" y="74" width="6" height="8" fill="#29B6F6"/>
+  <!-- Speech bubble -->
+  <ellipse cx="84" cy="56" rx="34" ry="14" fill="#FCE4EC" stroke="#F48FB1" stroke-width="1"/>
+  <text x="84" y="53" font-size="6.5" fill="#880E4F" text-anchor="middle" font-family="Arial">Kavitha akka</text>
+  <text x="84" y="63" font-size="6.5" fill="#880E4F" text-anchor="middle" font-family="Arial">saree 3000-aa?! 😱</text>
+  <!-- Legs -->
+  <rect x="72" y="145" width="11" height="20" rx="2" fill="#4E342E"/>
+  <rect x="85" y="145" width="11" height="20" rx="2" fill="#4E342E"/>
+  <text x="84" y="176" font-size="8" fill="#C2185B" text-anchor="middle" font-family="Arial" font-weight="bold">AMMA 📱</text>
+
+  <!-- ARJUN (child, smaller) playing game -->
+  <rect x="225" y="110" width="24" height="42" rx="3" fill="#CE93D8" stroke="#6A1B9A" stroke-width="1"/>
+  <circle cx="237" cy="100" r="12" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <circle cx="233" cy="102" r="2" fill="#4E342E"/>
+  <circle cx="241" cy="102" r="2" fill="#4E342E"/>
+  <path d="M 233 97 Q 237 93 241 97" stroke="#4E342E" stroke-width="1.5" fill="none"/>
+  <!-- Game controller -->
+  <rect x="240" y="124" width="20" height="12" rx="3" fill="#263238" stroke="#000" stroke-width="1"/>
+  <circle cx="245" cy="130" r="2" fill="red"/>
+  <circle cx="255" cy="130" r="2" fill="#4CAF50"/>
+  <!-- Legs -->
+  <rect x="226" y="152" width="9" height="14" rx="2" fill="#4E342E"/>
+  <rect x="237" y="152" width="9" height="14" rx="2" fill="#4E342E"/>
+  <!-- Speech bubble -->
+  <ellipse cx="237" cy="82" rx="30" ry="12" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1"/>
+  <text x="237" y="85" font-size="7" fill="#6A1B9A" text-anchor="middle" font-family="Arial">Level UP! 🎮</text>
+  <text x="237" y="176" font-size="8" fill="#6A1B9A" text-anchor="middle" font-family="Arial" font-weight="bold">ARJUN 🎮</text>
+
+  <!-- Sunday arrow note -->
+  <rect x="430" y="4" width="82" height="28" rx="4" fill="#FFEB3B" stroke="#F9A825" stroke-width="1.5"/>
+  <text x="471" y="15" font-size="7" fill="#E65100" text-anchor="middle" font-family="Arial" font-weight="bold">☀ SUNDAY</text>
+  <text x="471" y="26" font-size="7" fill="#E65100" text-anchor="middle" font-family="Arial">CHURCH TIME!</text>
+</svg>
+
+<div class="direction">[ அர்ஜுன் ஓடி வருகிறான், game விளையாடுகிறான். அம்மா phone-ல பேசுகிறாள். அப்பா TV பார்க்கிறார். Sunday morning — church நேரம்! ]</div>
+
+<div class="dialogue-block">
+  <div class="narrator-name">கதைசொல்லி (NARRATOR):</div>
+  <div class="eng-line">Oru normal Sunday morning... Church-ku pogum neram... Aana ithu family-la Sunday vera maathiri irukku!</div>
+  <div class="tamil-line">ஒரு சாதாரண ஞாயிற்றுக்கிழமை காலை... ஆலயத்திற்குப் போகும் நேரம்... ஆனால் இந்த குடும்பத்தில் ஞாயிற்றுக்கிழமை வேறுமாதிரி இருக்கிறது!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(குதித்து, game விளையாடுகிறான்)</span></div>
+  <div class="eng-line">YES! Level up aayiten! Pogaathaaa! 🎮</div>
+  <div class="tamil-line">ஆமாம்! Level up ஆயிட்டேன்! போகாதேடா!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">AMMA: <span class="char-action">(phone-ல பேசியபடி அர்ஜுனை கை காட்டி விரட்டுகிறாள்)</span></div>
+  <div class="eng-line">"Aiyo Kavitha, seriously-aa? Avanga saree 3000-aa? Illa illa, naan 2500-ku vaangitten..."</div>
+  <div class="tamil-line">ஐயோ கவிதா, நிஜமாகவா? அவங்க saree 3000-ஆ? இல்ல இல்ல, நான் 2500-க்கு வாங்கிட்டேன்...</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(அம்மாவின் கையை இழுக்கிறான்)</span></div>
+  <div class="eng-line">Ammaa! Breakfast?</div>
+  <div class="tamil-line">அம்மா! காலை சாப்பாடு?</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">AMMA: <span class="char-action">(phone விடாமல், fridge-ஐ கை காட்டுகிறாள்)</span></div>
+  <div class="eng-line">Fridge-la irukku, eduthukkoo...</div>
+  <div class="tamil-line">Fridge-ல இருக்கு, எடுத்துக்கோ...</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(பார்வையாளர்களிடம் சோர்வாக திரும்புகிறான் — comedy moment)</span></div>
+  <div class="eng-line">"Fridge-la yesterday's leftover dosa irukku... Naan-um naai-um same food saapdurom! 😭"</div>
+  <div class="tamil-line">Fridge-ல நேற்றைய மிச்சம் dosa இருக்கு... நானும் நாயும் ஒரே சாப்பாடு சாப்பிடுறோம்!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">APPA: <span class="char-action">(TV-ஐ பார்த்து கத்துகிறார்)</span></div>
+  <div class="eng-line">GOAL! GOAL! GOAAAAL! Semma match da! 🏏</div>
+  <div class="tamil-line">கோல்! கோல்! கோல்! சூப்பரான match டா!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(அப்பாவிடம் மெல்லச் செல்கிறான்)</span></div>
+  <div class="eng-line">Appa, today Sunday... Church-ku pogalama?</div>
+  <div class="tamil-line">அப்பா, இன்னைக்கு ஞாயிறு... ஆலயத்திற்குப் போகலாமா?</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">APPA: <span class="char-action">(TV-யிலிருந்து கண் எடுக்காமல்)</span></div>
+  <div class="eng-line">Next week da... Ippovum match irukku...</div>
+  <div class="tamil-line">அடுத்த வாரம் டா... இப்போவும் match இருக்கு...</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(பார்வையாளர்களிடம் திரும்பி, கோபமாக — BIG comedy moment)</span></div>
+  <div class="eng-line">"Next week... Next week... 52 weeks-um NEXT WEEK thaan! Calendar-la next week-e ILLA! 😤"</div>
+  <div class="tamil-line">அடுத்த வாரம்... அடுத்த வாரம்... 52 வாரமும் அடுத்த வாரம் தான்! Calendar-ல அடுத்த வாரமே இல்ல!</div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ═══════════════════ SCENE 2 ═══════════════════ -->
+<div class="section-title" style="margin: 0 32px;">🎬 காட்சி 2 — SCHOOL FRIENDS (பள்ளி நண்பர்கள்)</div>
+<div class="direction">[ அர்ஜுன் மற்றும் பிரியா பள்ளியில் சந்திக்கின்றனர். இருவருக்கும் ஒரே பிரச்னை — comedy high-five moments! ]</div>
+
+<div class="dialogue-block">
+  <div class="char-name">PRIYA: <span class="char-action">(சந்தோஷமாக வருகிறாள்)</span></div>
+  <div class="eng-line">Dei Arjun! Bible reading pannina?</div>
+  <div class="tamil-line">டேய் அர்ஜுன்! Bible படித்தாயா?</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(shocked முகம் — அதிர்ச்சியாக)</span></div>
+  <div class="eng-line">"Bible-aa? Bro, adhu my bookshelf-la DECORATION ITEM! Top shelf-la dust-um Bible-um mattum irukku! 📚"</div>
+  <div class="tamil-line">Bible-ஆ? Bro, அது என் bookshelf-ல decoration item! மேல் shelf-ல தூசியும் Bible-உம் மட்டும் இருக்கு!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">PRIYA: <span class="char-action">(சிரிக்கிறாள்)</span></div>
+  <div class="eng-line">Same here da! Namma parents-um sollamaatanga, nammaalum padikkamaatom — PERFECT COMBINATION! 😂</div>
+  <div class="tamil-line">என்னோட வீட்டிலும் அதே தான்! நம்ம parents-உம் சொல்லமாட்டாங்க, நம்மாலும் படிக்க மாட்டோம் — Perfect Combination!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN:</div>
+  <div class="eng-line">Amma always phone-la, Appa always TV-la, naan always game-la... HAPPY FAMILY! 👍</div>
+  <div class="tamil-line">அம்மா எப்பவும் phone-ல, அப்பா எப்பவும் TV-ல, நான் எப்பவும் game-ல... சந்தோஷமான குடும்பம்!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">PRIYA: <span class="char-action">(திடீரென தீவிரமாகிறாள்)</span></div>
+  <div class="eng-line">School-la solluvaanga — "Respect your parents!" But parents respect pannanum-nu yaaru solluvaanga?</div>
+  <div class="tamil-line">பள்ளியில் சொல்லுவாங்க — "பெற்றோரை மதியுங்கள்!" ஆனால் பெற்றோர் மதிக்கணும்-ன்னு யாரு சொல்லுவாங்க?</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(high five கொடுத்து இருவரும் சிரித்தபடி வெளியேறுகின்றனர்)</span></div>
+  <div class="eng-line">Valid point da! (HIGH FIVE! — Both exit laughing)</div>
+  <div class="tamil-line">சரியான point டா! (High five! — இருவரும் சிரித்தபடி போகிறார்கள்)</div>
+</div>
+
+<hr class="gold-divider"/>
+
+<!-- ═══════════════════ SCENE 3 ═══════════════════ -->
+<div class="page-break"></div>
+<div class="section-title" style="margin: 0 32px;">🎬 காட்சி 3 — JUDGMENT DAY ⚖️ (நியாய தீர்ப்பு நாள்)</div>
+
+<!-- Scene 3 SVG: Judgment Scene -->
+<svg class="scene-svg" width="520" height="200" viewBox="0 0 520 200">
+  <!-- Heavenly light rays -->
+  <defs>
+    <radialGradient id="heavenGlow" cx="50%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="#FFF9C4" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FFF9C4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="520" height="200" fill="url(#heavenGlow)"/>
+  <line x1="260" y1="200" x2="200" y2="0" stroke="#FFF9C4" stroke-width="12" opacity="0.5"/>
+  <line x1="260" y1="200" x2="260" y2="0" stroke="#FFF9C4" stroke-width="16" opacity="0.6"/>
+  <line x1="260" y1="200" x2="320" y2="0" stroke="#FFF9C4" stroke-width="12" opacity="0.5"/>
+  <line x1="260" y1="200" x2="160" y2="0" stroke="#FFF9C4" stroke-width="8" opacity="0.3"/>
+  <line x1="260" y1="200" x2="360" y2="0" stroke="#FFF9C4" stroke-width="8" opacity="0.3"/>
+
+  <!-- Steps to throne -->
+  <rect x="185" y="115" width="150" height="18" rx="2" fill="#E8EAF6" stroke="#7986CB" stroke-width="1"/>
+  <rect x="195" y="98"  width="130" height="18" rx="2" fill="#E8EAF6" stroke="#7986CB" stroke-width="1"/>
+  <rect x="208" y="80"  width="104" height="18" rx="2" fill="#E8EAF6" stroke="#7986CB" stroke-width="1"/>
+
+  <!-- Throne -->
+  <rect x="210" y="35" width="100" height="50" rx="4" fill="#FFD700" stroke="#F57F17" stroke-width="2"/>
+  <rect x="200" y="78" width="120" height="18" rx="2" fill="#FFD700" stroke="#F57F17" stroke-width="2"/>
+  <!-- Throne back -->
+  <rect x="215" y="78" width="90" height="48" rx="3" fill="#FFFDE7" stroke="#FFD700" stroke-width="1.5"/>
+
+  <!-- JESUS (seated) -->
+  <!-- Robe -->
+  <rect x="244" y="78" width="32" height="50" rx="3" fill="white" stroke="#BBDEFB" stroke-width="1.5"/>
+  <!-- Gold sash -->
+  <line x1="244" y1="110" x2="276" y2="110" stroke="#FFD700" stroke-width="3"/>
+  <!-- Head -->
+  <circle cx="260" cy="66" r="15" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <!-- Crown/halo -->
+  <circle cx="260" cy="66" r="21" fill="none" stroke="#FFD700" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.8"/>
+  <!-- Eyes, calm expression -->
+  <circle cx="255" cy="67" r="2" fill="#4E342E"/>
+  <circle cx="265" cy="67" r="2" fill="#4E342E"/>
+  <path d="M 254 62 Q 260 58 266 62" stroke="#4E342E" stroke-width="1.5" fill="none"/>
+  <text x="260" y="160" font-size="9" fill="#4527A0" text-anchor="middle" font-family="Arial" font-weight="bold">✝ JESUS இயேசு</text>
+
+  <!-- ANGEL with notebook -->
+  <!-- Body -->
+  <rect x="400" y="110" width="26" height="50" rx="3" fill="#E1F5FE" stroke="#0288D1" stroke-width="1"/>
+  <circle cx="413" cy="98" r="13" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <circle cx="409" cy="100" r="2" fill="#4E342E"/>
+  <circle cx="417" cy="100" r="2" fill="#4E342E"/>
+  <!-- Wings -->
+  <ellipse cx="393" cy="128" rx="18" ry="10" fill="#F0F4C3" stroke="#C5CAE9" stroke-width="1" opacity="0.9"/>
+  <ellipse cx="433" cy="128" rx="18" ry="10" fill="#F0F4C3" stroke="#C5CAE9" stroke-width="1" opacity="0.9"/>
+  <!-- Giant notebook -->
+  <rect x="424" y="118" width="30" height="40" rx="2" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5"/>
+  <line x1="428" y1="126" x2="450" y2="126" stroke="#BDBDBD" stroke-width="0.8"/>
+  <line x1="428" y1="132" x2="450" y2="132" stroke="#BDBDBD" stroke-width="0.8"/>
+  <line x1="428" y1="138" x2="450" y2="138" stroke="#BDBDBD" stroke-width="0.8"/>
+  <line x1="428" y1="144" x2="450" y2="144" stroke="#BDBDBD" stroke-width="0.8"/>
+  <text x="413" y="175" font-size="7.5" fill="#0288D1" text-anchor="middle" font-family="Arial" font-weight="bold">தூதர் கபிரியேல் 😇</text>
+
+  <!-- ARJUN trembling -->
+  <rect x="60" y="120" width="22" height="40" rx="3" fill="#CE93D8" stroke="#6A1B9A" stroke-width="1"/>
+  <circle cx="71" cy="108" r="12" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <!-- Sweat drops -->
+  <circle cx="84" cy="108" r="2.5" fill="#90CAF9"/>
+  <circle cx="86" cy="116" r="2"   fill="#90CAF9"/>
+  <circle cx="58" cy="112" r="2"   fill="#90CAF9"/>
+  <!-- Open mouth (scared) -->
+  <ellipse cx="71" cy="104" rx="4" ry="3" fill="#4E342E"/>
+  <text x="71" y="178" font-size="7.5" fill="#6A1B9A" text-anchor="middle" font-family="Arial" font-weight="bold">அர்ஜுன் 😰</text>
+
+  <!-- PARENTS behind Arjun -->
+  <rect x="25" y="125" width="22" height="40" rx="3" fill="#90CAF9" stroke="#1565C0" stroke-width="1"/>
+  <circle cx="36" cy="113" r="11" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <text x="36" y="178" font-size="7" fill="#1565C0" text-anchor="middle" font-family="Arial" font-weight="bold">அப்பா</text>
+
+  <rect x="108" y="125" width="22" height="40" rx="3" fill="#F48FB1" stroke="#C2185B" stroke-width="1"/>
+  <circle cx="119" cy="113" r="11" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <text x="119" y="178" font-size="7" fill="#C2185B" text-anchor="middle" font-family="Arial" font-weight="bold">அம்மா</text>
+
+  <!-- DEVIL in far corner -->
+  <rect x="470" y="115" width="28" height="50" rx="3" fill="#C62828" stroke="#B71C1C" stroke-width="1.5"/>
+  <circle cx="484" cy="103" r="13" fill="#FFCDD2" stroke="#B71C1C" stroke-width="1.5"/>
+  <!-- Horns -->
+  <polygon points="474,113 470,128 478,113" fill="#B71C1C"/>
+  <polygon points="494,113 498,128 490,113" fill="#B71C1C"/>
+  <!-- Evil eyes -->
+  <circle cx="479" cy="104" r="2.5" fill="#B71C1C"/>
+  <circle cx="489" cy="104" r="2.5" fill="#B71C1C"/>
+  <path d="M 478 99 Q 484 95 490 99" stroke="#B71C1C" stroke-width="1.5" fill="none"/>
+  <text x="484" y="178" font-size="7" fill="#C62828" text-anchor="middle" font-family="Arial" font-weight="bold">சாத்தான் 😈</text>
+</svg>
+
+<div class="direction">[ விளக்குகள் மங்குகின்றன. இயேசு அரியணையில் அமர்கிறார் — அமைதியாக, உறுதியாக. தூதர் கபிரியேல் பெரிய நோட்டுப்புத்தகத்துடன் நுழைகிறார். Spotlight effect பயன்படுத்துங்கள். ]</div>
+
+<div class="dialogue-block">
+  <div class="narrator-name">கதைசொல்லி (NARRATOR): <span class="char-action">(மெல்ல, தீவிரமான குரலில்)</span></div>
+  <div class="eng-line">Time passed... Years went by... And one day... THE JUDGMENT DAY CAME!</div>
+  <div class="tamil-line">காலம் கடந்தது... ஆண்டுகள் சென்றன... ஒரு நாள்... நியாய தீர்ப்பு நாள் வந்தது!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ANGEL GABRIEL: <span class="char-action">(பெரிய நோட்டுப்புத்தகத்தை திறக்கிறார் — dramatic)</span></div>
+  <div class="eng-line">Name?</div>
+  <div class="tamil-line">பெயர்?</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(குரல் நடுங்குகிறது)</span></div>
+  <div class="eng-line">Uh... Arjun... Arjun Kumar... (very small voice) Sir...</div>
+  <div class="tamil-line">உ... அர்ஜுன்... அர்ஜுன் குமார்... (மிகவும் மெல்லிய குரலில்) Sir...</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="angel-name">ANGEL GABRIEL: <span class="char-action">(மெல்ல மெல்ல படிக்கிறார் — shock முகம்)</span></div>
+  <div class="eng-line">"Arjun... Arjun... Found it! Sunday — game. Monday — game. Tuesday — game. Wednesday — game... Bro, your ENTIRE LIFE is a game! 🎮 (To Jesus) Lord, this one is 100% game addict!"</div>
+  <div class="tamil-line">அர்ஜுன்... அர்ஜுன்... கண்டுபிடித்தேன்! ஞாயிறு — game. திங்கள் — game. செவ்வாய் — game. புதன் — game... Bro, உன் முழு வாழ்க்கையும் ஒரு game தான்! (இயேசுவிடம்) ஆண்டவரே, இவன் 100% game addict!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(வியர்க்கிறான், தூதரிடம்)</span></div>
+  <div class="eng-line">Aana somebody should have TOLD me... 😰</div>
+  <div class="tamil-line">ஆனால் யாராவது என்னிடம் சொல்லியிருக்கணும்...</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="jesus-name">இயேசு (JESUS): <span class="char-action">(அமைதியாக, ஆனால் உறுதியாக)</span></div>
+  <div class="eng-line">"Arjun... I gave you parents to guide you. I gave you My Word — the Bible. I called you every Sunday to My house. What did you do?"</div>
+  <div class="tamil-line">அர்ஜுன்... உன்னை வழிநடத்த நான் உனக்கு பெற்றோரை கொடுத்தேன். என்னுடைய வார்த்தை — Bible-ஐ கொடுத்தேன். ஒவ்வொரு ஞாயிறும் என் ஆலயத்திற்கு உன்னை அழைத்தேன். நீ என்ன செய்தாய்?</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(தலை கவிழ்கிறான், உண்மையிலேயே வருத்தப்படுகிறான்)</span></div>
+  <div class="eng-line">"Lord... Amma phone-la iruntha... Appa TV-la iruntha... Bible top shelf-la iruntha... Naan middle-la LOST aayitten Lord!"</div>
+  <div class="tamil-line">ஆண்டவரே... அம்மா phone-ல இருந்தாள்... அப்பா TV-ல இருந்தார்... Bible மேல் shelf-ல இருந்தது... நான் நடுவில் தொலைந்தேன் ஆண்டவரே!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="jesus-name">இயேசு (JESUS):</div>
+  <div class="eng-line">Parents — come forward.</div>
+  <div class="tamil-line">பெற்றோர் — முன்னால் வாருங்கள்.</div>
+</div>
+
+<div class="direction">[ அம்மாவும் அப்பாவும் மெல்ல நுழைகிறார்கள் — phone-ஐ முதுகுக்கு பின்னால் மறைக்கிறார்கள் — comedy guilty walk ]</div>
+
+<div class="dialogue-block">
+  <div class="angel-name">ANGEL GABRIEL: <span class="char-action">(dramatic-ஆக புரண்டு புரண்டு படிக்கிறார்)</span></div>
+  <div class="eng-line">"Ah! THE PARENTS! Sunday — phone call. Monday — phone call. Tuesday — phone call... Ma'am, did you EVER put the phone DOWN? (long pause) Even to... PRAY? 🙏"</div>
+  <div class="tamil-line">ஆ! பெற்றோர் வந்தார்கள்! ஞாயிறு — phone call. திங்கள் — phone call. செவ்வாய் — phone call... அம்மா, நீங்கள் ஒரு நாளாவது phone-ஐ கீழே வைத்தீர்களா? (நீண்ட இடைவேளை) பிரார்த்தனை செய்யவாவது?</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">AMMA: <span class="char-action">(தலை கவிழ்ந்து, நடுங்குகிறாள்)</span></div>
+  <div class="eng-line">Lord... I was busy... job, house, cooking... naan try panninen...</div>
+  <div class="tamil-line">ஆண்டவரே... நான் busy-ஆ இருந்தேன்... வேலை, வீடு, சமையல்... நான் முயற்சி செய்தேன்...</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="jesus-name">இயேசு (JESUS):</div>
+  <div class="eng-line">"I gave you a child — MY gift to you. I said — Train up a child in the way he should go. (Proverbs 22:6) Did you take him to church? Did you pray WITH him? Did you open the Bible WITH him?"</div>
+  <div class="tamil-line">நான் உனக்கு ஒரு குழந்தையை கொடுத்தேன் — என் பரிசு. நான் சொன்னேன் — "பிள்ளையை அவன் போக வேண்டிய வழியில் வளர்." (நீதிமொழிகள் 22:6) நீ அவனை ஆலயத்திற்கு அழைத்துச் சென்றாயா? அவனுடன் சேர்ந்து பிரார்த்தனை செய்தாயா? அவனுடன் Bible படித்தாயா?</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">AMMA: <span class="char-action">(மெல்ல, வெட்கத்துடன்)</span></div>
+  <div class="eng-line">No, Lord...</div>
+  <div class="tamil-line">இல்லை, ஆண்டவரே...</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">APPA: <span class="char-action">(சாக்கு சொல்ல முயற்சிக்கிறார்)</span></div>
+  <div class="eng-line">Lord... I was tired after work...</div>
+  <div class="tamil-line">ஆண்டவரே... வேலைக்கு பிறகு நான் களைத்திருந்தேன்...</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="jesus-name">இயேசு (JESUS): <span class="char-action">(மெல்லிய புன்னகையுடன்)</span></div>
+  <div class="eng-line">Tired for Me... but NOT tired for cricket? 🏏</div>
+  <div class="tamil-line">என்னிடம் வர களைப்பு... ஆனால் cricket பார்க்க களைப்பு இல்லையா? 🏏</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="angel-name">ANGEL GABRIEL: <span class="char-action">(comedy scoreboard prop காட்டுகிறார்)</span></div>
+  <div class="eng-line">"Cricket matches watched: 247 ✅ — Sunday church attended: 3 ❌ — Bible opened: 1 time... on WEDDING DAY ❌"</div>
+  <div class="tamil-line">Cricket match பார்த்தது: 247 ✅ — ஞாயிறு ஆலயம் சென்றது: 3 ❌ — Bible திறந்தது: 1 முறை... திருமண நாளில் மட்டும் ❌</div>
+</div>
+
+<hr class="gold-divider"/>
+
+<!-- ═══════════════════ SCENE 4 ═══════════════════ -->
+<div class="section-title" style="margin: 0 32px;">🎬 காட்சி 4 — THE CONSEQUENCES 😢 (விளைவுகள்)</div>
+
+<!-- Scene 4 SVG: Devil dragging -->
+<svg class="scene-svg" width="520" height="185" viewBox="0 0 520 185">
+  <!-- Fire background -->
+  <rect x="0" y="0" width="520" height="185" fill="#FFF3E0"/>
+  <!-- Fire polygons at bottom -->
+  <polygon points="0,185 15,145 30,185"   fill="#FF6F00" opacity="0.8"/>
+  <polygon points="25,185 40,140 55,185"  fill="#FF8F00" opacity="0.8"/>
+  <polygon points="50,185 65,150 80,185"  fill="#FF6F00" opacity="0.8"/>
+  <polygon points="75,185 90,138 105,185" fill="#FFA000" opacity="0.8"/>
+  <polygon points="100,185 115,148 130,185" fill="#FF6F00" opacity="0.8"/>
+  <polygon points="125,185 140,142 155,185" fill="#FF8F00" opacity="0.8"/>
+  <polygon points="150,185 165,152 180,185" fill="#FF6F00" opacity="0.8"/>
+  <polygon points="0,185 10,155 20,185"   fill="#FFD600" opacity="0.6"/>
+  <polygon points="30,185 43,148 56,185"  fill="#FFD600" opacity="0.6"/>
+  <polygon points="60,185 72,152 84,185"  fill="#FFD600" opacity="0.6"/>
+  <polygon points="90,185 102,145 114,185" fill="#FFD600" opacity="0.6"/>
+  <polygon points="120,185 132,150 144,185" fill="#FFD600" opacity="0.6"/>
+
+  <!-- PARENTS shocked (left) -->
+  <!-- Amma -->
+  <rect x="20" y="100" width="24" height="48" rx="3" fill="#F48FB1" stroke="#C2185B" stroke-width="1"/>
+  <circle cx="32" cy="88" r="13" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <circle cx="27" cy="90" r="2" fill="#4E342E"/>
+  <circle cx="37" cy="90" r="2" fill="#4E342E"/>
+  <!-- Open mouth shocked -->
+  <ellipse cx="32" cy="86" rx="4" ry="3" fill="#4E342E"/>
+  <!-- Tears -->
+  <line x1="27" y1="93" x2="24" y2="108" stroke="#90CAF9" stroke-width="1.5"/>
+  <circle cx="24" cy="108" r="2.5" fill="#90CAF9"/>
+  <line x1="37" y1="93" x2="40" y2="108" stroke="#90CAF9" stroke-width="1.5"/>
+  <circle cx="40" cy="108" r="2.5" fill="#90CAF9"/>
+  <text x="32" y="165" font-size="7.5" fill="#C2185B" text-anchor="middle" font-family="Arial" font-weight="bold">அம்மா 😭</text>
+
+  <!-- Appa -->
+  <rect x="60" y="100" width="24" height="48" rx="3" fill="#90CAF9" stroke="#1565C0" stroke-width="1"/>
+  <circle cx="72" cy="88" r="13" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <circle cx="67" cy="90" r="2" fill="#4E342E"/>
+  <circle cx="77" cy="90" r="2" fill="#4E342E"/>
+  <ellipse cx="72" cy="86" rx="4" ry="3" fill="#4E342E"/>
+  <line x1="67" y1="93" x2="64" y2="108" stroke="#90CAF9" stroke-width="1.5"/>
+  <circle cx="64" cy="108" r="2.5" fill="#90CAF9"/>
+  <text x="72" y="165" font-size="7.5" fill="#1565C0" text-anchor="middle" font-family="Arial" font-weight="bold">அப்பா 😭</text>
+
+  <!-- ARJUN running scared -->
+  <rect x="210" y="105" width="24" height="44" rx="3" fill="#CE93D8" stroke="#6A1B9A" stroke-width="1"/>
+  <circle cx="222" cy="93" r="13" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <ellipse cx="222" cy="89" rx="4.5" ry="3.5" fill="#4E342E"/>
+  <!-- Running arms stretched toward left (parents) -->
+  <line x1="210" y1="118" x2="175" y2="103" stroke="#FFAB91" stroke-width="4"/>
+  <line x1="234" y1="118" x2="200" y2="107" stroke="#FFAB91" stroke-width="4"/>
+  <!-- Running legs -->
+  <line x1="213" y1="149" x2="195" y2="165" stroke="#4E342E" stroke-width="3"/>
+  <line x1="231" y1="149" x2="240" y2="165" stroke="#4E342E" stroke-width="3"/>
+  <text x="222" y="180" font-size="7.5" fill="#6A1B9A" text-anchor="middle" font-family="Arial" font-weight="bold">அர்ஜுன் 😱</text>
+
+  <!-- DEVIL grabbing Arjun -->
+  <rect x="330" y="100" width="30" height="52" rx="3" fill="#C62828" stroke="#B71C1C" stroke-width="2"/>
+  <circle cx="345" cy="87" r="15" fill="#FFCDD2" stroke="#B71C1C" stroke-width="2"/>
+  <!-- Horns -->
+  <polygon points="331,100 326,120 336,100" fill="#B71C1C"/>
+  <polygon points="359,100 364,120 354,100" fill="#B71C1C"/>
+  <!-- Tail -->
+  <path d="M 360 125 Q 385 105 395 120 Q 400 130 390 135" stroke="#B71C1C" stroke-width="2.5" fill="none"/>
+  <!-- Evil eyes -->
+  <circle cx="339" cy="88" r="3" fill="#B71C1C"/>
+  <circle cx="351" cy="88" r="3" fill="#B71C1C"/>
+  <path d="M 338 82 Q 345 78 352 82" stroke="#B71C1C" stroke-width="2" fill="none"/>
+  <!-- Grabbing arm to Arjun -->
+  <line x1="330" y1="118" x2="244" y2="118" stroke="#C62828" stroke-width="5"/>
+  <circle cx="244" cy="118" r="5" fill="#C62828"/>
+  <text x="345" y="172" font-size="7.5" fill="#C62828" text-anchor="middle" font-family="Arial" font-weight="bold">சாத்தான் 😈</text>
+
+  <!-- Jesus hand (right) -->
+  <line x1="510" y1="105" x2="470" y2="115" stroke="#FFAB91" stroke-width="6"/>
+  <circle cx="470" cy="115" r="7" fill="#FFAB91"/>
+  <text x="490" y="90" font-size="8" fill="#4527A0" text-anchor="middle" font-family="Arial" font-weight="bold">இயேசு</text>
+  <text x="490" y="101" font-size="7.5" fill="#2E7D32" text-anchor="middle" font-family="Arial" font-style="italic">என்னிடம் வா!</text>
+
+  <!-- Chain -->
+  <path d="M 244 118 Q 290 130 330 118" stroke="#263238" stroke-width="2" fill="none" stroke-dasharray="5,3"/>
+</svg>
+
+<div class="direction">[ சாத்தான் நடிப்புடன் நுழைகிறான் — comedy villain walk — evil laugh, cape சுழல்கிறது ]</div>
+
+<div class="dialogue-block">
+  <div class="devil-name">சாத்தான் (DEVIL): <span class="char-action">(கைகளை உரசி, evil laugh)</span></div>
+  <div class="eng-line">Muahahaha! My collection is GROWING! (spots Arjun) Ohhh, this one is MINE! Vaa vaa vaa! 😈</div>
+  <div class="tamil-line">முகாஹாஹா! என் collection வளர்கிறது! (அர்ஜுனை பார்க்கிறான்) ஓஹோ, இவன் என்னுடையவன்! வா வா வா!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(அதிர்ச்சியில் பின்னோக்கி ஓடுகிறான்)</span></div>
+  <div class="eng-line">WHAT?! No no no no! LORD PLEASE! I'll change! I PROMISE!</div>
+  <div class="tamil-line">என்ன?! வேண்டாம் வேண்டாம்! ஆண்டவரே தயவுசெய்து! நான் மாறுவேன்! நான் வாக்குறுதி கொடுக்கிறேன்!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="jesus-name">இயேசு (JESUS): <span class="char-action">(துயரத்துடன், கண்கள் மூடி)</span></div>
+  <div class="eng-line">"Arjun... I loved you. I DIED for you. I called you again... and again... and again. But you never came."</div>
+  <div class="tamil-line">அர்ஜுன்... நான் உன்னை நேசித்தேன். உனக்காக நான் மரித்தேன். மீண்டும் மீண்டும் உன்னை அழைத்தேன். ஆனால் நீ வரவேயில்லை.</div>
+</div>
+
+<div class="direction">[ சாத்தான் அர்ஜுனின் கையைப் பிடிக்கிறான் — அர்ஜுன் பெற்றோர் பக்கம் திரும்பி, கை நீட்டி, அழுகிறான் ]</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(உணர்ச்சி மிகுந்த breakdown — இது அனைவரையும் தொடும்)</span></div>
+  <div class="eng-line">"AMMA! APPA! Neenga enna correct pannaliye! Yen church-ku kondu poge?! Yen Bible padikka sollale?! Naan tappai pannum pothe neenga correct pannirundha, naan Jesus-kitta vandiruppean! ITHU UNGALODA TAPPUUUU! 😭"</div>
+  <div class="tamil-line">அம்மா! அப்பா! நீங்கள் என்னை சரிசெய்யவேயில்லை! ஏன் ஆலயத்திற்கு அழைத்துச் செல்லவில்லை?! ஏன் Bible படிக்கச் சொல்லவில்லை?! நான் தவறு செய்யும்போது நீங்கள் திருத்தியிருந்தால், நான் இயேசுவிடம் வந்திருப்பேன்! இது உங்களுடைய தப்பு!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">AMMA: <span class="char-action">(கைகளை நீட்டி அழுகிறாள்)</span></div>
+  <div class="eng-line">Arjun...! (reaches out but cannot hold him)</div>
+  <div class="tamil-line">அர்ஜுன்...! (கையை நீட்டுகிறாள் ஆனால் பிடிக்க முடியவில்லை)</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">APPA: <span class="char-action">(முழந்தாளில் விழுகிறார், உடைந்த குரல்)</span></div>
+  <div class="eng-line">Son...! Maanne...!</div>
+  <div class="tamil-line">மகனே...! மாணே...!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="devil-name">சாத்தான் (DEVIL): <span class="char-action">(அர்ஜுனை இழுத்துச் செல்கிறான் — comedy walk but chilling)</span></div>
+  <div class="eng-line">Less talking! More walking! Bye bye FAMILY! 👋 Muahaha!</div>
+  <div class="tamil-line">பேச்சு வேண்டாம்! நட நட! குடும்பத்தினரே குட்பை! முகாஹா!</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(இழுக்கப்படும்போது, கடைசி வார்த்தைகள்)</span></div>
+  <div class="eng-line">AMMAAAA! APPAAA! WHY DIDN'T YOU TEACH ME?! 💔</div>
+  <div class="tamil-line">அம்மாஆஆ! அப்பாஆஆ! ஏன் என்னை கற்பிக்கவில்லை?! 💔</div>
+</div>
+
+<div class="blackout-note">★ BLACKOUT — 3 நொடிகள் முழு அமைதி — Maximum Emotional Impact ★</div>
+
+<hr class="gold-divider"/>
+
+<!-- ═══════════════════ SCENE 5 ═══════════════════ -->
+<div class="section-title" style="margin: 0 32px;">🎬 காட்சி 5 — WAKE UP CALL! 🌟 (விழிப்பு அழைப்பு!)</div>
+
+<!-- Scene 5 SVG: Hope scene -->
+<svg class="scene-svg" width="520" height="185" viewBox="0 0 520 185">
+  <!-- Sunrise gradient background -->
+  <defs>
+    <radialGradient id="sunGlow" cx="50%" cy="0%" r="70%">
+      <stop offset="0%"   stop-color="#FFD700" stop-opacity="0.7"/>
+      <stop offset="40%"  stop-color="#FFF9C4" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#E8F5E9" stop-opacity="0.3"/>
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="520" height="185" fill="url(#sunGlow)"/>
+  <!-- Ground -->
+  <rect x="0" y="148" width="520" height="37" fill="#E8F5E9"/>
+  <line x1="0" y1="148" x2="520" y2="148" stroke="#2E7D32" stroke-width="2"/>
+
+  <!-- CHURCH background right -->
+  <rect x="390" y="68" width="90" height="80" rx="2" fill="white" stroke="#3949AB" stroke-width="2"/>
+  <!-- Roof -->
+  <polygon points="385,68 435,30 485,68" fill="#3949AB" stroke="#1A237E" stroke-width="1.5"/>
+  <!-- Cross on church -->
+  <line x1="435" y1="35" x2="435" y2="58" stroke="#FFD700" stroke-width="3"/>
+  <line x1="426" y1="47" x2="444" y2="47" stroke="#FFD700" stroke-width="3"/>
+  <!-- Door -->
+  <rect x="417" y="108" width="24" height="40" rx="3" fill="#8D6E63" stroke="#4E342E" stroke-width="1"/>
+  <!-- Windows -->
+  <rect x="395" y="80" width="20" height="24" rx="2" fill="#90CAF9" stroke="#3949AB" stroke-width="1"/>
+  <rect x="455" y="80" width="20" height="24" rx="2" fill="#90CAF9" stroke="#3949AB" stroke-width="1"/>
+  <!-- Church label -->
+  <text x="435" y="122" font-size="7" fill="#3949AB" text-anchor="middle" font-family="Arial" font-weight="bold">CHURCH</text>
+  <text x="435" y="132" font-size="7" fill="#3949AB" text-anchor="middle" font-family="Arial">ஆலயம்</text>
+
+  <!-- Open Bible -->
+  <rect x="60" y="100" width="35" height="42" rx="3" fill="#BBDEFB" stroke="#1A237E" stroke-width="2"/>
+  <rect x="95" y="100" width="35" height="42" rx="3" fill="#E3F2FD" stroke="#1A237E" stroke-width="2"/>
+  <line x1="95" y1="100" x2="95" y2="142" stroke="#1A237E" stroke-width="2"/>
+  <line x1="66" y1="110" x2="88" y2="110" stroke="#BDBDBD" stroke-width="0.8"/>
+  <line x1="66" y1="116" x2="88" y2="116" stroke="#BDBDBD" stroke-width="0.8"/>
+  <line x1="66" y1="122" x2="88" y2="122" stroke="#BDBDBD" stroke-width="0.8"/>
+  <line x1="66" y1="128" x2="88" y2="128" stroke="#BDBDBD" stroke-width="0.8"/>
+  <line x1="101" y1="110" x2="123" y2="110" stroke="#BDBDBD" stroke-width="0.8"/>
+  <line x1="101" y1="116" x2="123" y2="116" stroke="#BDBDBD" stroke-width="0.8"/>
+  <line x1="101" y1="122" x2="123" y2="122" stroke="#BDBDBD" stroke-width="0.8"/>
+  <line x1="101" y1="128" x2="123" y2="128" stroke="#BDBDBD" stroke-width="0.8"/>
+  <text x="77" y="159" font-size="7.5" fill="#1A237E" text-anchor="middle" font-family="Arial" font-weight="bold">📖 BIBLE</text>
+  <text x="107" y="159" font-size="7.5" fill="#1A237E" text-anchor="middle" font-family="Arial" font-weight="bold">திறந்தது!</text>
+
+  <!-- Family TOGETHER -->
+  <!-- Appa -->
+  <rect x="205" y="100" width="26" height="48" rx="3" fill="#90CAF9" stroke="#1565C0" stroke-width="1.5"/>
+  <circle cx="218" cy="88" r="14" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <circle cx="213" cy="90" r="2.5" fill="#4E342E"/>
+  <circle cx="223" cy="90" r="2.5" fill="#4E342E"/>
+  <path d="M 212 85 Q 218 81 224 85" stroke="#4E342E" stroke-width="1.5" fill="none"/>
+
+  <!-- Amma -->
+  <rect x="250" y="100" width="26" height="48" rx="3" fill="#F48FB1" stroke="#C2185B" stroke-width="1.5"/>
+  <circle cx="263" cy="88" r="14" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <circle cx="258" cy="90" r="2.5" fill="#4E342E"/>
+  <circle cx="268" cy="90" r="2.5" fill="#4E342E"/>
+  <path d="M 257 85 Q 263 81 269 85" stroke="#4E342E" stroke-width="1.5" fill="none"/>
+  <!-- Phone on table (face down!) -->
+  <rect x="255" y="140" width="14" height="10" rx="2" fill="#263238"/>
+  <text x="262" y="157" font-size="6" fill="#2E7D32" text-anchor="middle" font-family="Arial">📵 கீழே!</text>
+
+  <!-- Arjun (child) in middle hug -->
+  <rect x="228" y="110" width="22" height="40" rx="3" fill="#CE93D8" stroke="#6A1B9A" stroke-width="1.5"/>
+  <circle cx="239" cy="99" r="12" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <circle cx="235" cy="101" r="2" fill="#4E342E"/>
+  <circle cx="243" cy="101" r="2" fill="#4E342E"/>
+  <path d="M 234 96 Q 239 92 244 96" stroke="#4E342E" stroke-width="1.5" fill="none"/>
+
+  <!-- Hugging arms -->
+  <path d="M 205 118 Q 215 112 228 118" stroke="#FFAB91" stroke-width="4" fill="none"/>
+  <path d="M 276 118 Q 265 112 250 118" stroke="#FFAB91" stroke-width="4" fill="none"/>
+
+  <!-- Hearts -->
+  <text x="220" y="75" font-size="14" text-anchor="middle">❤️</text>
+  <text x="240" y="70" font-size="16" text-anchor="middle">❤️</text>
+  <text x="260" y="75" font-size="14" text-anchor="middle">❤️</text>
+
+  <!-- Labels -->
+  <text x="218" y="168" font-size="7.5" fill="#1565C0" text-anchor="middle" font-family="Arial" font-weight="bold">அப்பா</text>
+  <text x="239" y="168" font-size="7.5" fill="#6A1B9A" text-anchor="middle" font-family="Arial" font-weight="bold">அர்ஜுன்</text>
+  <text x="263" y="168" font-size="7.5" fill="#C2185B" text-anchor="middle" font-family="Arial" font-weight="bold">அம்மா</text>
+
+  <!-- Arrow to church -->
+  <line x1="290" y1="120" x2="385" y2="105" stroke="#2E7D32" stroke-width="2"/>
+  <polygon points="385,105 377,100 377,110" fill="#2E7D32"/>
+  <text x="336" y="115" font-size="8" fill="#2E7D32" text-anchor="middle" font-family="Arial" font-weight="bold">ஆலயம் போகிறோம்! ✓</text>
+
+  <!-- Angel peeking from side -->
+  <circle cx="500" cy="50" r="18" fill="#FFAB91" stroke="#4E342E" stroke-width="1.5"/>
+  <!-- Wings peek -->
+  <ellipse cx="480" cy="68" rx="14" ry="8" fill="#F0F4C3" stroke="#C5CAE9" stroke-width="1"/>
+  <text x="500" y="85" font-size="7" fill="#0288D1" text-anchor="middle" font-family="Arial" font-weight="bold">தூதர் 😇</text>
+  <text x="500" y="95" font-size="7" fill="#2E7D32" text-anchor="middle" font-family="Arial">Good news!</text>
+</svg>
+
+<div class="direction">[ விளக்குகள் மெல்ல திரும்பி வருகின்றன. இது ஒரு எச்சரிக்கை தரிசனம். பின்னணியில் மெல்லிய தமிழ் கிறிஸ்தவ இசை தொடங்குகிறது. ]</div>
+
+<div class="dialogue-block">
+  <div class="narrator-name">கதைசொல்லி (NARRATOR): <span class="char-action">(மெல்ல, நம்பிக்கையான குரல்)</span></div>
+  <div class="eng-line">Ithu oru vision... Oru warning... God's mercy-la ithu ungalukku kaattinaaru... Ippa time irukku. Change aagalaam. IPPA!</div>
+  <div class="tamil-line">இது ஒரு தரிசனம்... ஒரு எச்சரிக்கை... கடவுளுடைய இரக்கத்தில் இதை உங்களுக்கு காட்டினார்... இப்போது நேரம் இருக்கிறது. மாறலாம். இப்போதே!</div>
+</div>
+
+<div class="direction">[ அம்மா மெல்ல phone-ஐ மேசையில் கவிழ்த்து வைக்கிறாள். அப்பா remote-ஐ அணைக்கிறார். இருவரும் ஒருவரை ஒருவர் பார்க்கிறார்கள், பின்னர் அர்ஜுனைப் பார்க்கிறார்கள். ]</div>
+
+<div class="dialogue-block">
+  <div class="char-name">APPA: <span class="char-action">(அர்ஜுனிடம் நடந்து, தோளில் கை வைக்கிறார், உணர்ச்சிவசப்படுகிறார்)</span></div>
+  <div class="eng-line">"Da... Next Sunday illa — THIS Sunday. Naama church pogom. Naan kuda vandhuvaen. Promise."</div>
+  <div class="tamil-line">டா... அடுத்த ஞாயிறு இல்ல — இந்த ஞாயிறே. நாம் ஆலயம் போவோம். நானும் வருவேன். வாக்குறுதி.</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(ஆச்சரியமாக, சந்தோஷமாக)</span></div>
+  <div class="eng-line">Serious-aa Appa?! 😮 (eyes wide, jaw drops — comedy surprise)</div>
+  <div class="tamil-line">உண்மையிலேயே அப்பா?! (கண்கள் அகலமாகி, வாய் பிளக்கிறது — comedy surprise)</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">AMMA: <span class="char-action">(தூசு பிடித்த Bible-ஐ எடுத்து மெல்ல துடைக்கிறாள், கண்ணீருடன் புன்னகை)</span></div>
+  <div class="eng-line">"Inna night, naama family-a Bible padippom, pray pannuvom. Together. Namma moonru perum."</div>
+  <div class="tamil-line">இன்று இரவு, நாம் family-ஆக Bible படிப்போம், பிரார்த்தனை செய்வோம். சேர்ந்து. நம்ம மூன்று பேரும்.</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="char-name">ARJUN: <span class="char-action">(இருவரையும் கட்டிப்பிடிக்கிறான் — genuine moment)</span></div>
+  <div class="eng-line">Amma... Appa... Naan-um ready! 🙏</div>
+  <div class="tamil-line">அம்மா... அப்பா... நானும் ready! 🙏</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="angel-name">ANGEL GABRIEL: <span class="char-action">(பக்கவாட்டில் தலை நுழைக்கிறார் — comedy whisper to audience)</span></div>
+  <div class="eng-line">"Psssst! Oru family change aayidudhu! My record-la GOOD NEWS ezhudharen! (does happy little dance and exits) ✨"</div>
+  <div class="tamil-line">சீ! ஒரு குடும்பம் மாறிவிட்டது! என் record-ல நற்செய்தி எழுதுகிறேன்! (சந்தோஷமாக ஆடி வெளியேறுகிறார்)</div>
+</div>
+
+<hr class="gold-divider"/>
+
+<!-- ═══════════════════ FINAL NARRATION ═══════════════════ -->
+<div class="section-title" style="margin: 0 32px;">🎤 இறுதி பிரகடனம் — ALL CAST TOGETHER</div>
+<div class="direction">[ அனைத்து 8 நடிகர்களும் மேடையில் நடந்து வருகிறார்கள். ஒரு வரிசையில் நிற்கிறார்கள். மாறி மாறி பேசுகிறார்கள். ]</div>
+
+<div class="dialogue-block">
+  <div class="narrator-name">கதைசொல்லி — பெற்றோரிடம்:</div>
+  <div class="eng-line">Neenga parent-a? Ungal pillaikku BIBLE kaattunga. PRAYER kaattunga. CHURCH kondu poonga.</div>
+  <div class="tamil-line">நீங்கள் பெற்றோரா? உங்கள் பிள்ளைக்கு Bible காட்டுங்கள். பிரார்த்தனை காட்டுங்கள். ஆலயத்திற்கு அழைத்துச் செல்லுங்கள்.</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="narrator-name">கதைசொல்லி — குழந்தைகளிடம்:</div>
+  <div class="eng-line">Neenga child-a? Parents-ku RESPECT pannunga. BIBLE padinga. JESUS-kitta vaanga.</div>
+  <div class="tamil-line">நீங்கள் குழந்தையா? பெற்றோரை மதியுங்கள். Bible படியுங்கள். இயேசுவிடம் வாருங்கள்.</div>
+</div>
+
+<div class="dialogue-block">
+  <div class="narrator-name">அனைவரும் சேர்ந்து (ALL TOGETHER):</div>
+  <div class="eng-line">Ennendral... Judgment Day — REAL. But God's mercy — ALSO REAL. TODAY is your chance. Don't wait for NEXT WEEK!</div>
+  <div class="tamil-line">ஏனென்றால்... நியாய தீர்ப்பு நாள் — உண்மை. ஆனால் கடவுளின் இரக்கம் — அதுவும் உண்மை. இன்றே உங்கள் வாய்ப்பு. அடுத்த வாரத்திற்கு காத்திருக்காதீர்கள்!</div>
+</div>
+
+<!-- KEY VERSES -->
+<div class="verse-box">
+  <div class="verse-tam">பிள்ளைகளே, நம்முடைய கர்த்தாவாகிய இயேசுவுக்குள் உங்கள் பெற்றோருக்கு கீழ்ப்படியுங்கள்; இது நீதியாயிருக்கிறது.</div>
+  <div class="verse-eng">"Children, obey your parents in the Lord, for this is right."</div>
+  <div class="verse-ref">— எபேசியர் / Ephesians 6:1</div>
+</div>
+
+<div class="verse-box">
+  <div class="verse-tam">பிள்ளைக்கு அவன் போக வேண்டிய வழியில் பழக்கம் உண்டுபண்ணு; அவன் முதிர்வயதிலும் அதை விட்டு விலகமாட்டான்.</div>
+  <div class="verse-eng">"Train up a child in the way he should go; even when he is old he will not depart from it."</div>
+  <div class="verse-ref">— நீதிமொழிகள் / Proverbs 22:6</div>
+</div>
+
+<div class="direction" style="text-align:center; margin-top:8px;">[ அனைவரும் சேர்ந்து குனிகிறார்கள். இசை மெல்ல அதிகரிக்கிறது. விளக்குகள் மெல்ல மங்குகின்றன. ]</div>
+
+<hr class="gold-divider"/>
+
+<!-- PRODUCTION TIPS -->
+<div class="section">
+  <div class="section-title">🎭 நடிப்பு குறிப்புகள் — PRODUCTION TIPS</div>
+  <table class="tips">
+    <tr><th>Element / பொருள்</th><th>Suggestion / ஆலோசனை</th></tr>
+    <tr><td>Angel's Notebook 📋</td><td>Oversized fake iPad or BIG notebook — dramatic open பண்ணும்போது big laugh கிடைக்கும்</td></tr>
+    <tr><td>Devil Costume 😈</td><td>Red cape, plastic horns, comedy evil walk — exaggerate for laughs — யாரும் பயப்படவேண்டாம்!</td></tr>
+    <tr><td>Amma's Prop 📱</td><td>Phone GLUED to hand — Scene 5-ல மட்டும் கீழே வைக்கிறாள் — actor remember பண்ணணும்</td></tr>
+    <tr><td>Appa's Prop 📺</td><td>TV remote — off-stage-ல cricket commentary sounds play பண்ணுங்கள்</td></tr>
+    <tr><td>Judgment Throne ✝️</td><td>Simple white cloth covered chair + single spotlight — simple but powerful</td></tr>
+    <tr><td>Blackout Moment ⬛</td><td>3 full seconds of complete silence — director must count — maximum emotional impact</td></tr>
+    <tr><td>Background Music 🎵</td><td>Scene 4-ல sad Tamil Christian song — Scene 5-ல hopeful worship song</td></tr>
+    <tr><td>Comedy Timing 😂</td><td>Arjun's faces to audience = BIG laughs — "Next week" scene-ஐ நன்றாக practice பண்ணுங்கள்</td></tr>
+    <tr><td>Angel Scoreboard 📊</td><td>Whiteboard or cardboard — funny cricket-style stats pre-written — comedy gold</td></tr>
+    <tr><td>Final Bow 🙏</td><td>அனைவரும் சேர்ந்து குனிவதற்கு முன் 2 seconds pause — let the message sink in</td></tr>
+  </table>
+</div>
+
+<hr class="gold-divider"/>
+
+<div class="footer">
+  <div class="footer-tamil">இயேசு கிறிஸ்துவுக்கே மகிமை! | VBS Drama Ministry | கடவுள் உங்கள் நடிப்பை ஆசீர்வதிப்பார்! 🙏</div>
+  <div style="margin-top:3px;">God Bless Your VBS Presentation! &nbsp;|&nbsp; All Glory to Jesus Christ &nbsp;|&nbsp; Script prepared with love ✝️</div>
+</div>
+
+</body>
+</html>
